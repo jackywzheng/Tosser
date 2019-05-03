@@ -45,17 +45,17 @@ function create() {
     // curve.body.checkCollision.down = true;
 
 
-    paper = this.physics.add.image(530, 1400, 'paper');
+    paper = this.physics.add.image(window.innerWidth / 2, window.innerHeight * 0.9, 'paper');
     paper.setInteractive();
-    paper.displayHeight = 150;
-    paper.displayWidth = 150;
+    paper.displayHeight = window.innerHeight * 0.087;
+    paper.displayWidth = window.innerWidth * 0.153;
     paper.body.onWorldBounds = true;
     paper.body.setCollideWorldBounds(true);
     paper.setBounce(0.4);
 
-    bin_top = this.physics.add.image(290, 750, 'bin_top');
-    bin_top_2 = this.physics.add.image(650, 750, 'bin_top');
-    floor = this.physics.add.image(window.innerWidth / 2, 975, 'bin_top');
+    bin_top = this.physics.add.image(window.innerWidth * 0.295, window.innerHeight * 0.430, 'bin_top');
+    bin_top_2 = this.physics.add.image(window.innerWidth * 0.663, window.innerHeight * 0.430, 'bin_top');
+    floor = this.physics.add.image(window.innerWidth / 2, window.innerHeight * 0.559, 'bin_top');
     floor.displayWidth = window.innerWidth;
     floor.setImmovable(true);
 
@@ -122,28 +122,28 @@ function update() {
 
 function hitTarget() {
     if (paper.body.velocity.y > 0) {
+        this.gamecolliders[0].active = false;
         paper.disableBody(true, true);
-        paper.enableBody(true, 530, 1400, true, true);
+        paper.enableBody(true, window.innerWidth / 2, window.innerHeight * 0.9, true, true);
         paper.visible = true;
         item_status = false;
-        paper.displayHeight = 150;
-        paper.displayWidth = 150;
+        paper.displayHeight = window.innerHeight * 0.087;
+        paper.displayWidth = window.innerWidth * 0.153;
     }
-    this.gamecolliders[0].active = false;
 }
 
 function missedTarget () {
     paper.body.setAllowDrag(true);
     paper.body.setDrag(20, 0);
     paper.body.setAngularDrag(180);
-    this.gamecolliders[0].active = false;
     if (paper.body.angularVelocity == 0) {
+        this.gamecolliders[0].active = false;
         paper.disableBody(true, true);
-        paper.enableBody(true, 530, 1400, true, true);
+        paper.enableBody(true, window.innerWidth / 2, window.innerHeight * 0.9, true, true);
         paper.visible = true;
         item_status = false;
-        paper.displayHeight = 150;
-        paper.displayWidth = 150;
+        paper.displayHeight = window.innerHeight * 0.087;
+        paper.displayWidth = window.innerWidth * 0.153;
         paper.body.setAllowDrag(false);
     }
     }
